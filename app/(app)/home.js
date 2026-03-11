@@ -1,5 +1,5 @@
 import { Button, Text, View } from 'react-native';
-import { useAuth } from '../context/auth_context';
+import { useAuth } from '../../context/auth_context';
 
 export default function HomeScreen() {
   const { user, logout } = useAuth();

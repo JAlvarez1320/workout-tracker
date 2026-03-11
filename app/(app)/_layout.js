@@ -1,7 +1,7 @@
 import { Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
-import { useAuth } from "../context/auth_context";
+import { useAuth } from "../../context/auth_context";
 
 export default function AppLayout() {
   const { isAuthenticated, isLoading } = useAuth();

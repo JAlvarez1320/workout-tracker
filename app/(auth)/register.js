@@ -3,17 +3,19 @@ import { useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../../context/auth_context';
 
-const LoginScreen = () => {
+export default function registerScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [localLoading, setLocalLoading] = useState(false);
-  const { login, isLoading: authLoading } = useAuth();
+  const { register, isLoading: authLoading } = useAuth();
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     // Basic validation
-    if (!email || !password) {
-      Alert.alert('Error', 'Please enter the correct information');
+    if (!email || !password || !confirmPassword || !displayName) {
+      Alert.alert('Error', 'Please fill in all fields');
       return;
     }
 
@@ -24,24 +26,36 @@ const LoginScreen = () => {
       return;
     }
 
+    // Password match validation
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+
     setLocalLoading(true);
-    const result = await login(email, password);
+    const result = await register(email, password, displayName);
     setLocalLoading(false);
 
     if (result.success) {
-      // Redirect to home screen on successful login
-      router.replace('/home');
+      Alert.alert('Success', 'Registration successful! Please log in.');
+      router.replace('/login');
     } else {
-      Alert.alert('Login Failed', result.message || 'An error occurred during login');
+      Alert.alert('Registration Failed', result.message || 'An error occurred during registration');
     }
   };
 
   const isLoading = localLoading || authLoading;
 
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Lifting Tracker</Text>
+      <Text style={styles.title}>Create Account</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Display Name"
+        value={displayName}
+        onChangeText={setDisplayName}
+        editable={!isLoading}
+      />
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -59,15 +73,23 @@ const LoginScreen = () => {
         secureTextEntry
         editable={!isLoading}
       />
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+        editable={!isLoading}
+      />
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+            <Text style={styles.buttonText}>Register</Text>
+          </TouchableOpacity>
       )}
-      <TouchableOpacity onPress={() => router.push('/register')}>
-        <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+      <TouchableOpacity onPress={() => router.push('/login')}>
+        <Text style={styles.linkText}>Already have an account? Login </Text>
       </TouchableOpacity>
     </View>
   );
@@ -90,24 +112,23 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 15,
-    paddingHorizontal: 10,
     borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 15,
   },
   button: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#007bff',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
+    marginTop: 10,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
   },
-  signupText: {
+  linkText: {
+    color: '#007bff',
     marginTop: 20,
-    color: '#007BFF',
   },
 });
-
-export default LoginScreen;
