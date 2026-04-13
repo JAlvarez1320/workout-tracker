@@ -3,7 +3,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../services/firebase';
@@ -64,6 +65,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Reset Password
+  const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
+
   // Logout
   const logout = async () => {
     try {
@@ -83,6 +94,7 @@ export const AuthProvider = ({ children }) => {
         login,
         register,
         logout,
+        resetPassword,
       }}
     >
       {children}
