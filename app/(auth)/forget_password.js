@@ -38,23 +38,26 @@ return (
     <Text style={styles.title}>Forgot Password</Text>
     <Text style={styles.subtitle}>Enter the email associated with your account</Text>
 
-    <TextInput
-      style={styles.input}
-      placeholder="Email"
-      value={email}
-      onChangeText={setEmail}
-      autoCapitalize="none"
-      keyboardType="email-address"
-      editable={!isSubmitting}
-    />
+      <View style={styles.inputBox}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          editable={!isSubmitting}
+        />
+      </View>
 
-    {isSubmitting ? (
-      <ActivityIndicator size="large" color="#007AFF" />
-    ) : (
-      <TouchableOpacity style={styles.button} onPress={handleReset}>
-        <Text style={styles.buttonText}>Send Reset Link</Text>
-      </TouchableOpacity>
-    )}
+      {isSubmitting ? (
+        <ActivityIndicator size="large" color="#007AFF" />
+      ) : (
+        <TouchableOpacity style={styles.button} onPress={handleReset}>
+          <Text style={styles.buttonText}>Send Reset Link</Text>
+        </TouchableOpacity>
+      )}
+
 
       <TouchableOpacity onPress={() => router.back()}>
         <Text style={styles.backText}>Back to Login</Text>
@@ -81,18 +84,29 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-  input: {
-    width: '100%',
-    height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    marginBottom: 20,
+  inputBox: {
+    borderColor: '#000000',
+    borderWidth: 2,
+    borderRadius: 2,
+    padding: 15,
+    width: '50%',
+    marginBottom: 40,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
   },
+  input: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#000000',
+    borderRadius: 5,
+    marginBottom: 12,
+    paddingHorizontal: 10,
+    fontSize: 14,
+    backgroundColor: '#fff',
+   },
   button: {
-    width: '100%',
-    height: 50,
+    width: '20%',
+    height: 40,
     backgroundColor: '#007AFF',
     borderRadius: 8,
     justifyContent: 'center',
@@ -104,6 +118,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   link: {
+    color: '#007AFF',
+    fontSize: 16,
+  },
+  backText: {
     color: '#007AFF',
     fontSize: 16,
   },

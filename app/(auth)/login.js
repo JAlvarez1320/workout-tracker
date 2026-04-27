@@ -1,7 +1,9 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../../context/auth_context';
+
+const liftLogo = require('../../assets/images/lift-logo.png');
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -41,7 +43,11 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Lifting Tracker</Text>
+      <Image
+        source={liftLogo}
+        style={styles.logo}
+        resizeMode="contain"
+      />
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -80,23 +86,27 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#fff',
+    paddingTop: 10,
+    padding: 10,
+    backgroundColor: '#ffffff',
+    gap: 1,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
+  logo: {
+    width: 300,
+    height: 300,
+    marginBottom: -100,
   },
   input: {
-    width: '100%',
+    width: '25%',
     height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 15,
+    marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius: 5,
+    backgroundColor: '#fff',
   },
   button: {
     backgroundColor: '#007BFF',
