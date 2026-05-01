@@ -12,7 +12,7 @@ export default function AppLayout() {
       // Redirect to login if not authenticated
       router.replace("/(auth)/login");
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, router]);
 
   // Show loading indicator while checking authentication
   if (isLoading) {
