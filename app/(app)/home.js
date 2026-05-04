@@ -14,6 +14,10 @@ export default function HomeScreen() {
         onPress={() => router.push("/(app)/addLog")}
       />
       <Button
+        title="View History"
+        onPress={() => router.push('/(app)/history')}
+      />
+      <Button
         title="Logout"
         onPress={logout}
       />

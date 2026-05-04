@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, Alert } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, FlatList } from 'react-native';
 import { addWorkoutLog } from '../../services/workoutService';
 import { useRouter } from 'expo-router';
 
@@ -10,6 +10,7 @@ export default function AddLogScreen() {
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
   const [message, setMessage] = useState('');
+  const [currentExercises, setCurrentExercises] = useState([]);
   const router = useRouter();
 
   const handleSaveWorkout = async () => {

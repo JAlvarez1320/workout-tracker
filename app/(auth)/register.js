@@ -13,7 +13,7 @@ export default function registerScreen() {
   const router = useRouter();
 
   const handleRegister = async () => {
-    // Basic validation
+    // Email validation
     if (!email || !password || !confirmPassword || !displayName) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
