@@ -49,44 +49,46 @@ export default function registerScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Display Name"
-        value={displayName}
-        onChangeText={setDisplayName}
-        editable={!isLoading}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        editable={!isLoading}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        editable={!isLoading}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        secureTextEntry
-        editable={!isLoading}
-      />
+      <View style={styles.inputBox}>
+        <TextInput
+          style={styles.input}
+          placeholder="Display Name"
+          value={displayName}
+          onChangeText={setDisplayName}
+          editable={!isLoading}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          editable={!isLoading}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          editable={!isLoading}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry
+          editable={!isLoading}
+        />
+      </View>
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Register</Text>
-          </TouchableOpacity>
+          <Text style={styles.buttonText}>Register</Text>
+        </TouchableOpacity>
       )}
       <TouchableOpacity onPress={() => router.push('/login')}>
         <Text style={styles.linkText}>Already have an account? Login </Text>
@@ -107,14 +109,24 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
   },
+  inputBox: {
+    borderColor: '#000000',
+    borderWidth: 2,
+    borderRadius: 2,
+    padding: 15,
+    width: '50%',
+    marginBottom: 20,
+    backgroundColor: '#ffffff',
+  },
   input: {
-    width: '100%',
     height: 40,
-    borderColor: '#ccc',
     borderWidth: 1,
+    borderColor: '#000000',
     borderRadius: 5,
+    marginBottom: 12,
     paddingHorizontal: 10,
-    marginBottom: 15,
+    fontSize: 14,
+    backgroundColor: '#fff',
   },
   button: {
     backgroundColor: '#007bff',
