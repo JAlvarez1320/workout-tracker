@@ -2,6 +2,7 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeApp } from 'firebase/app';
 import { initializeAuth } from 'firebase/auth';
 import { getReactNativePersistence } from '@firebase/auth/dist/rn/index.js';
+import { getDatabase } from 'firebase/database';
 
 
 const firebaseConfig = {
@@ -11,7 +12,8 @@ const firebaseConfig = {
   storageBucket: "workouttracker-98359.firebasestorage.app",
   messagingSenderId: "102650884840",
   appId: "1:102650884840:web:4257a68457ad54cfe60f5d",
-  measurementId: "G-B904818CGW"
+  measurementId: "G-B904818CGW",
+  databaseURL: "https://workouttracker-98359-default-rtdb.firebaseio.com"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -19,3 +21,5 @@ const app = initializeApp(firebaseConfig);
 export const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });
+
+export const db = getDatabase(app);

@@ -13,7 +13,7 @@ export default function registerScreen() {
   const router = useRouter();
 
   const handleRegister = async () => {
-    // Basic validation
+    // Email validation
     if (!email || !password || !confirmPassword || !displayName) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
@@ -87,8 +87,8 @@ export default function registerScreen() {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Register</Text>
-          </TouchableOpacity>
+          <Text style={styles.buttonText}>Register</Text>
+        </TouchableOpacity>
       )}
       <TouchableOpacity onPress={() => router.push('/login')}>
         <Text style={styles.linkText}>Already have an account? Login </Text>

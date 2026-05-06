@@ -10,12 +10,12 @@ export default function Index() {
   useEffect(() => {
     if (!isLoading) {
       if (isAuthenticated) {
-        router.replace("/home"); // maps to (app)/home.js
+        router.replace("/(app)/home"); // maps to (app)/home.js
       } else {
-        router.replace('/login'); // maps to (auth)/login
+        router.replace('/(auth)/login'); // maps to (auth)/login
       }
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, router]);
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

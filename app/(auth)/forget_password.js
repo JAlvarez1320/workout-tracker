@@ -33,10 +33,10 @@ export default function ForgotPasswordScreen() {
     }
   };
 
-return (
-  <View style={styles.container}>
-    <Text style={styles.title}>Forgot Password</Text>
-    <Text style={styles.subtitle}>Enter the email associated with your account</Text>
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Forgot Password</Text>
+      <Text style={styles.subtitle}>Enter the email associated with your account</Text>
 
       <View style={styles.inputBox}>
         <TextInput
