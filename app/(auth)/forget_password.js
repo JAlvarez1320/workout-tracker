@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 14,
     backgroundColor: '#fff',
-  },
+   },
   button: {
     width: '20%',
     height: 40,
