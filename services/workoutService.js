@@ -18,6 +18,7 @@ export async function addWorkoutLog(workout) {
     exerID: workout.exerID,
     sets: Number(workout.sets),
     reps: Number(workout.reps),
+    weight: Number(workout.weight),
     time: {
       minutes: Number(workout.minutes),
       seconds: Number(workout.seconds),

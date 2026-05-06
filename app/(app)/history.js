@@ -39,6 +39,7 @@ export default function HistoryScreen() {
             <Text>Date: {item.date}</Text>
             <Text>Sets: {item.sets}</Text>
             <Text>Reps: {item.reps}</Text>
+            <Text>Reps: {item.weight}</Text>
             <Text>
               Time: {item.time.minutes}m {item.time.seconds}s
             </Text>
