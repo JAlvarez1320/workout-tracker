@@ -1,6 +1,6 @@
 // services/workoutService.js
-import { db, auth } from './firebase';
-import { ref, push, set } from 'firebase/database';
+import { push, ref, set } from 'firebase/database';
+import { auth, db } from './firebase';
 
 export async function addWorkoutLog(workout) {
   const user = auth.currentUser;
@@ -18,6 +18,7 @@ export async function addWorkoutLog(workout) {
     exerID: workout.exerID,
     sets: Number(workout.sets),
     reps: Number(workout.reps),
+    weight: Number(workout.weight),
     time: {
       minutes: Number(workout.minutes),
       seconds: Number(workout.seconds),

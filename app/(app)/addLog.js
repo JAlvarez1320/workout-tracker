@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, FlatList } from 'react-native';
-import { addWorkoutLog } from '../../services/workoutService';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { addWorkoutLog } from '../../services/workoutService';
 
 export default function AddLogScreen() {
   const [exerName, setExerName] = useState('');
   const [sets, setSets] = useState('');
   const [reps, setReps] = useState('');
+  const [weight, setWeight] = useState('');
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
   const [message, setMessage] = useState('');
@@ -16,7 +17,7 @@ export default function AddLogScreen() {
 
   const handleSaveWorkout = async () => {
     if (!exerName || !sets || !reps) {            // Validate user input
-      setMessage('Please fill in Exercise Name, Sets, and Reps. Minutes and Seconds are optional.');
+      setMessage('Please fill in Exercise Name, Sets, Weight, and Reps. Minutes and Seconds are optional.');
       return;
     }
 
@@ -30,14 +31,15 @@ export default function AddLogScreen() {
       return;
     }
 
-    try {      
+    try {
       // Waits until Firebase finishes saving log
-      const savedLog = await addWorkoutLog({ 
+      const savedLog = await addWorkoutLog({
         date: new Date().toISOString().split('T')[0],           // Takes current data and converts to string, splits at T ("2026-05-04T21:30:00.000Z") to (2026-05-04)
         exerName,
         exerID: exerName.toLowerCase().replace(/\s+/g, '_'),    // Convert spaces to (_), converts str to lower case
         sets,
         reps,
+        weight,
         minutes,
         seconds,
       });
@@ -53,6 +55,7 @@ export default function AddLogScreen() {
       setExerName('');
       setSets('');
       setReps('');
+      setWeight('');
       setMinutes('');
       setSeconds('');
     }
@@ -90,6 +93,15 @@ export default function AddLogScreen() {
       />
 
       <TextInput
+        placeholder="Weight"
+        value={weight}
+        onChangeText={(text) => setWeight(text.replace(/[^0-9]/g, ''))}   // Validate user input
+        keyboardType="numeric"
+        style={styles.input}
+      />
+
+
+      <TextInput
         placeholder="Minutes"
         value={minutes}
         onChangeText={(text) => setMinutes(text.replace(/[^0-9]/g, ''))}
@@ -104,13 +116,13 @@ export default function AddLogScreen() {
         keyboardType="numeric"
         style={styles.input}
       />
-      
+
       <Text style={styles.subtitle}>Current Workout Log</Text>
       <Button
         title={showLog ? "Hide" : "Show"}
         onPress={() => setShowLog(!showLog)}
       />
-      
+
       {showLog && (
         <FlatList
          data={currentExercises}
@@ -154,21 +166,21 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 6,
   },
-  
+
   subtitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 20,
     marginBottom: 10,
   },
-  
+
   card: {
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
     borderRadius: 6,
   },
-  
+
   exerciseName: {
     fontWeight: 'bold',
   },
