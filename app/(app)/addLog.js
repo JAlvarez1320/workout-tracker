@@ -94,7 +94,7 @@ export default function AddLogScreen() {
 
       <TextInput
         placeholder="Weight"
-        value={reps}
+        value={weight}
         onChangeText={(text) => setWeight(text.replace(/[^0-9]/g, ''))}     // Validate user input
         keyboardType="numeric"
         style={styles.input}
@@ -131,9 +131,8 @@ export default function AddLogScreen() {
               <Text style={styles.exerciseName}>{item.exerName}</Text>
               <Text>Sets: {item.sets}</Text>
               <Text>Reps: {item.reps}</Text>
-              <Text>
-                Time: {item.time.minutes}m {item.time.seconds}s
-              </Text>
+              <Text>Weight: {item.weight}<Text>
+              </Text>Time: {item.time.minutes}m {item.time.seconds}s</Text>
             </View>
           )}
         />
