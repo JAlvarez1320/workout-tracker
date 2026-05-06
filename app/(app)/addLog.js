@@ -11,25 +11,43 @@ export default function AddLogScreen() {
   const [seconds, setSeconds] = useState('');
   const [message, setMessage] = useState('');
   const [currentExercises, setCurrentExercises] = useState([]);
+  const [showLog, setShowLog] = useState(true);
   const router = useRouter();
 
   const handleSaveWorkout = async () => {
-    try {
-      console.log('Save button pressed');
+    if (!exerName || !sets || !reps) {            // Validate user input
+      setMessage('Please fill in Exercise Name, Sets, and Reps. Minutes and Seconds are optional.');
+      return;
+    }
 
+    if (!Number.isInteger(Number(sets)) || Number(sets) <= 0) {     // Validate user input
+      setMessage('Sets must be a positive integer');
+      return;
+    }
 
-      const savedLog = await addWorkoutLog({
-        date: new Date().toISOString().split('T')[0],
+    if (!Number.isInteger(Number(reps)) || Number(reps) <= 0) {     // Validate user input
+      setMessage('Reps must be a positive integer');
+      return;
+    }
+
+    try {      
+      // Waits until Firebase finishes saving log
+      const savedLog = await addWorkoutLog({ 
+        date: new Date().toISOString().split('T')[0],           // Takes current data and converts to string, splits at T ("2026-05-04T21:30:00.000Z") to (2026-05-04)
         exerName,
-        exerID: exerName.toLowerCase().replace(/\s+/g, '_'),
+        exerID: exerName.toLowerCase().replace(/\s+/g, '_'),    // Convert spaces to (_), converts str to lower case
         sets,
         reps,
         minutes,
         seconds,
       });
 
-      console.log('Workout saved!', savedLog);
-      setMessage('Workout saved!');
+      setMessage('Workout saved!');   // Verify saved workout
+
+      setCurrentExercises((prevExercises) => [
+        ...prevExercises,
+        savedLog
+      ]);
 
       // Clear inputs
       setExerName('');
@@ -37,7 +55,8 @@ export default function AddLogScreen() {
       setReps('');
       setMinutes('');
       setSeconds('');
-    } catch (error) {
+    }
+    catch (error) {
       console.log('Error saving workout:', error);
       setMessage(`Error: ${error.message}`);
     }
@@ -57,7 +76,7 @@ export default function AddLogScreen() {
       <TextInput
         placeholder="Sets"
         value={sets}
-        onChangeText={setSets}
+        onChangeText={(text) => setSets(text.replace(/[^0-9]/g, ''))}     // Validate user input
         keyboardType="numeric"
         style={styles.input}
       />
@@ -65,7 +84,7 @@ export default function AddLogScreen() {
       <TextInput
         placeholder="Reps"
         value={reps}
-        onChangeText={setReps}
+        onChangeText={(text) => setReps(text.replace(/[^0-9]/g, ''))}     // Validate user input
         keyboardType="numeric"
         style={styles.input}
       />
@@ -73,7 +92,7 @@ export default function AddLogScreen() {
       <TextInput
         placeholder="Minutes"
         value={minutes}
-        onChangeText={setMinutes}
+        onChangeText={(text) => setMinutes(text.replace(/[^0-9]/g, ''))}
         keyboardType="numeric"
         style={styles.input}
       />
@@ -81,10 +100,33 @@ export default function AddLogScreen() {
       <TextInput
         placeholder="Seconds"
         value={seconds}
-        onChangeText={setSeconds}
+        onChangeText={(text) => setSeconds(text.replace(/[^0-9]/g, ''))}
         keyboardType="numeric"
         style={styles.input}
       />
+      
+      <Text style={styles.subtitle}>Current Workout Log</Text>
+      <Button
+        title={showLog ? "Hide" : "Show"}
+        onPress={() => setShowLog(!showLog)}
+      />
+      
+      {showLog && (
+        <FlatList
+         data={currentExercises}
+          keyExtractor={(item) => item.logID}
+          renderItem={({ item }) => (
+            <View style={styles.card}>
+              <Text style={styles.exerciseName}>{item.exerName}</Text>
+              <Text>Sets: {item.sets}</Text>
+              <Text>Reps: {item.reps}</Text>
+              <Text>
+                Time: {item.time.minutes}m {item.time.seconds}s
+              </Text>
+            </View>
+          )}
+        />
+      )}
 
       <Button title="Save Workout" onPress={handleSaveWorkout} />
       <Button title="Back to Home" onPress={() => router.push('/(app)/home')}/>
@@ -99,15 +141,35 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
   },
+
   title: {
     fontSize: 22,
     marginBottom: 20,
     fontWeight: 'bold',
   },
+
   input: {
     borderWidth: 1,
     marginBottom: 10,
     padding: 10,
     borderRadius: 6,
+  },
+  
+  subtitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  
+  card: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 6,
+  },
+  
+  exerciseName: {
+    fontWeight: 'bold',
   },
 });
