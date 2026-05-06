@@ -1,62 +1,49 @@
-# Workout Tracker
+# Welcome to your Expo app 👋
 
-A mobile workout tracker built with Expo, React Native, and Firebase. This app helps users log workouts, view exercise history, and track progress toward fitness goals.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Features
+## Get started
 
-- Track workout logs and session details
-- View workout history and progress over time
-- User authentication and Realtime Database with Firebase Platform
+1. Install dependencies
 
-## Getting Started
+   ```bash
+   npm install
+   ```
 
-### Prerequisites
+2. Start the app
 
-- Node.js
-- npm or Yarn
-- Expo CLI (`npm install -g expo-cli`)
+   ```bash
+   ```
 
-### Install dependencies
+In the output, you'll find options to open the app in a
 
-```bash
-npm install
-```
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-### Run locally
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-```bash
-npm start
-```
+## Get a fresh project
 
-Then open the app on a simulator, physical device, or web browser using the Expo dev tools.
-
-### Run on a specific platform
+When you're ready, run:
 
 ```bash
-npm run android
-npm run ios
-npm run web
+npm run reset-project
 ```
 
-## How to Use the App
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-1. Open the app
-2. If you are new, select **Don't have an account? Sign Up** and create an account using your display name, email, and password.
-3. After successful registration, log in from the login screen with your email and password.
-4. On the home screen, tap **Add Workout Log** to record a new exercise.
-5. Enter the exercise name, sets, reps, and optional time spent (minutes and seconds).
-6. Tap **Save Workout** to store the log in Firebase.
-7. Use the **Show/Hide** button to toggle the current workout entry list on the add log screen.
-8. Return to the home screen and choose **View History** to see all saved workouts.
-9. The history screen displays each log with date, exercise name, sets, reps, and time.
-10. Tap **Logout** on the home screen to sign out.
+## Learn more
 
-## Project Structure
+To learn more about developing your project with Expo, look at the following resources:
 
-- `app/` - Expo Router screens and navigation layout
-- `components/` - Reusable UI components
-- `constants/` - Theme and app constants
-- `context/` - Authentication context and state management
-- `hooks/` - Custom hooks for theme and color scheme
-- `services/` - Firebase and workout data services
-- `scripts/` - Utility scripts such as project reset
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

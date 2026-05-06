@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "WorkoutTracking",
-    "slug": "WorkoutTracking",
+    "name": "cpsc362-lift.ios",
+    "slug": "cpsc362-lift.ios",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "workouttracking",
+    "scheme": "cpsc362liftios",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -38,10 +38,7 @@
             "backgroundColor": "#000000"
           }
         }
-      ],
-      "expo-font",
-      "expo-image",
-      "expo-web-browser"
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

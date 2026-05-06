@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, FlatList } from 'react-native';
-import { addWorkoutLog } from '../../services/workoutService';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { addWorkoutLog } from '../../services/workoutService';
 
 export default function AddLogScreen() {
   const [exerName, setExerName] = useState('');
@@ -131,15 +131,16 @@ export default function AddLogScreen() {
               <Text style={styles.exerciseName}>{item.exerName}</Text>
               <Text>Sets: {item.sets}</Text>
               <Text>Reps: {item.reps}</Text>
-              <Text>Weight: {item.weight}<Text>
-              </Text>Time: {item.time.minutes}m {item.time.seconds}s</Text>
+              <Text>
+                Time: {item.time.minutes}m {item.time.seconds}s
+              </Text>
             </View>
           )}
         />
       )}
 
       <Button title="Save Workout" onPress={handleSaveWorkout} />
-      <Button title="Back to Home" onPress={() => router.push('/(app)/home')}/>
+      <Button title="Back to Home" onPress={() => router.push('/(tabs)')} />
       <Text>{message}</Text>
     </View>
   );

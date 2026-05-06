@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Chest Dumbbells",
+    "exercises": [
+      { "sets": 4, "name": "Incline Bench Press", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Bench Press", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Chest Fly", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Pullover", "equipment": "Dumbbell" }
+    ]
+  },
+  {
+    "title": "Back Dumbbells",
+    "exercises": [
+      { "sets": 4, "name": "Dumbbell Row" },
+      { "sets": 4, "name": "Renegade Row", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Pull Up" },
+      { "sets": 4, "name": "Chin Up" },
+      { "sets": 4, "name": "Lat Pulldown", "equipment": "Cable" }
+    ]
+  },
+  {
+    "title": "Shoulders Dumbbells",
+    "exercises": [
+      { "sets": 4, "name": "Front Raise", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Lateral Raise", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Shoulder Press", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Rear Delt Reverse Fly", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Upright Row", "equipment": "Dumbbell" }
+    ]
+  },
+  {
+    "title": "Arms Dumbbells",
+    "exercises": [
+      { "sets": 4, "name": "Seated Incline Curl", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Triceps Extension", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Hammer Curl", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Skullcrusher", "equipment": "Dumbbell" },
+      { "sets": 4, "name": "Concentration Curl", "equipment": "Dumbbell" }
+    ]
+  }
+]

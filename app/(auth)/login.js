@@ -32,7 +32,7 @@ const LoginScreen = () => {
 
     if (result.success) {
       // Redirect to home screen on successful login
-      router.replace('/home');
+      router.replace('/(tabs)');
     } else {
       Alert.alert('Login Failed', result.message || 'An error occurred during login');
     }
